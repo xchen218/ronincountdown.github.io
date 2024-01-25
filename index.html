@@ -1,1 +1,50 @@
-Hello World
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    p {
+        text-align: center;
+        font-size: 60px;
+        margin-top: 0px;
+    }
+    </style>
+</head>
+
+<body>
+    <p id="demo"></p>
+    <script>
+
+    var localUnlockTimeBeiJing = new Date("Mar 21, 2024 09:00:00");
+    // var n = countDownDateUTC.getTimezoneOffset();
+    // var localUnlockTime = countDownDateUTC;
+    // console.log(localUnlockTime.toISOString().slice(0,19));
+    // localUnlockTime.setMinutes(countDownDateUTC.getMinutes() - n);
+    // console.log(n);
+    // local
+    // console.log(localUnlockTime.toISOString().slice(0,19));
+
+    var x = setInterval(function() {
+
+        var nowBeijing = new Date();
+
+        var distance = localUnlockTimeBeiJing - nowBeijing;
+
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("demo").innerHTML = "距离浪人发售还有：" + days + "天 " + hours + "时 " +
+            minutes + "分 " + seconds + "秒 ";
+
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "解禁啦！";
+        }
+    }, 1000);
+    </script>
+</body>
+
+</html>
